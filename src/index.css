@@ -1,0 +1,20 @@
+nav {
+    background-color: darkgray;
+    position: fixed;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 100px;
+    width: 100%;
+}
+
+img {
+    height: 200px;
+    width: 200px;
+    margin-right: 30px;
+    margin-bottom: 30px;
+    object-fit: cover;
+}
