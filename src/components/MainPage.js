@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchPictures, setPictures } from "../store/picturesSlice";
 import { CatPicture } from "./CatPicture";
 
 export const MainPage = () => {
-    const [showBtn, setShowBtn] = useState(false)
     const pictures = useSelector(state => state.pictures.all);
     const prevPictures = JSON.parse(sessionStorage.getItem('allPictures'));
     const scroll = sessionStorage.getItem('scrollPosition');
@@ -50,7 +49,6 @@ export const MainPage = () => {
 
         window.addEventListener('beforeunload', () => sessionStorage.setItem('scrollPosition', window.pageYOffset));
         
-        
         window.addEventListener('scroll', () => {
             const doc = document.documentElement;
             
@@ -68,7 +66,7 @@ export const MainPage = () => {
     let images;
 
     if (pictures) {
-        images = Object.keys(pictures).map(key => <CatPicture key={key} url={pictures[key].url}/>)
+        images = Object.keys(pictures).map(key => <CatPicture key={key} imgId={key}/>)
     }
 
     return <>

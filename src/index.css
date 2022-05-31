@@ -14,7 +14,25 @@ main {
 img {
     height: 200px;
     width: 200px;
+    object-fit: cover;
+}
+
+.img-container {
+    height: 200px;
+    width: 200px;
     margin-right: 30px;
     margin-bottom: 30px;
-    object-fit: cover;
+    position: relative;
+}
+.img-container-selected {
+    box-shadow: 0px 0px 10px 2px gray;
+}
+.img-fav,
+.img-fav-border {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    cursor: pointer;
 }

@@ -1,12 +1,11 @@
 import { 
     createSlice, 
-    createAsyncThunk, 
-    // createSelector
+    createAsyncThunk
 } from "@reduxjs/toolkit";
 
 const initialState = {
-    all: [],
-    favorite: []
+    all: {},
+    favorite: {}
 }
 
 export const fetchPictures = createAsyncThunk('pictures/fetchPosts', async (amount) => {
@@ -27,27 +26,20 @@ const picturesSlice = createSlice({
     reducers: {
         setPictures(state, action) {
             state.all = action.payload;
+        },
+        favPictureHandler(state, action) {
+            const imgId = action.payload.imgId;
+            const picture = state.all[imgId];
+
+            if (picture.selected) {
+                state.favorite[imgId] = picture
+            } else {
+                delete state.favorite[imgId];
+            }
         }
     },
-    // extraReducers(builder) {
-    //     builder
-    //     .addCase(fetchPictures.pending, (state) => {
-    //         state.status = 'loading';
-    //     })
-    //     .addCase(fetchPictures.fulfilled, (state, action) => {
-    //         state.status = 'successed';
-    //         console.log(action.payload);
-    //         state.pictures = action.payload;
-    //     })
-    //     .addCase(fetchPictures.rejected, (state, action) => {
-    //         state.status = 'failed';
-    //         state.error = action.error.message;
-    //     })
-    // }
 });
 
-// export const selectPictures = state => state.pictures.pictures;
-
-export const { setPictures } = picturesSlice.actions;
+export const { setPictures, favPictureHandler } = picturesSlice.actions;
 
 export default picturesSlice.reducer
