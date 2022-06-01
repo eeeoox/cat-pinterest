@@ -1,0 +1,45 @@
+.img {
+    &-cat {
+        height: calc(225px * var(--scale));
+        width: calc(225px * var(--scale));
+        object-fit: cover;
+    }
+    &-fav, &-fav-border {
+        width: calc(48px * var(--scale));
+        height: calc(48px * var(--scale));
+        position: absolute;
+        bottom: calc(15px * var(--scale));
+        right: calc(15px * var(--scale));
+        cursor: pointer;
+    }
+}
+
+.img-container {
+    @extend %img-container;
+
+    &-selected {
+        box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.24), 0px 9px 18px rgba(0, 0, 0, 0.18);
+    }
+}
+
+.img-spinner-container {
+    @extend %img-container;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .img-spinner {
+        width: calc(100px * var(--scale));
+        height: calc(100px * var(--scale));
+        animation: rotation 2s infinite linear;
+    }
+}
+
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+}

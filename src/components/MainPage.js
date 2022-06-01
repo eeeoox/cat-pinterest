@@ -6,7 +6,9 @@ import { CatPicture } from "./CatPicture";
 
 export const MainPage = () => {
     const pictures = useSelector(state => state.pictures.all);
-    const prevPictures = JSON.parse(sessionStorage.getItem('allPictures'));
+    const prevPictures = JSON.parse(
+        sessionStorage.getItem('allPictures')
+    );
     const dispatch = useDispatch();
 
     const fetchNewPictures = async () => {
@@ -16,7 +18,9 @@ export const MainPage = () => {
             let entities = {};
 
             if (sessionStorage.getItem('allPictures')) {
-                entities = JSON.parse(sessionStorage.getItem('allPictures'));
+                entities = JSON.parse(
+                    sessionStorage.getItem('allPictures')
+                );
             }
 
             res = res.filter(async picture => {
@@ -30,7 +34,9 @@ export const MainPage = () => {
             res.forEach(picture => {
                 entities[picture.id] = {url: picture.url};
             });
-            sessionStorage.setItem('allPictures', JSON.stringify(entities));
+            sessionStorage.setItem(
+                'allPictures', JSON.stringify(entities)
+            );
 
             dispatch(setPictures(entities));
 
@@ -47,7 +53,9 @@ export const MainPage = () => {
         }
 
         const listener = () => {
-            sessionStorage.setItem('scrollPositionMain', window.pageYOffset);
+            sessionStorage.setItem(
+                'scrollPositionMain', window.pageYOffset
+            );
 
             const doc = document.documentElement;
             
@@ -63,13 +71,20 @@ export const MainPage = () => {
     let images;
 
     if (pictures) {
-        images = Object.keys(pictures).map(key => <CatPicture key={key} imgId={key}/>)
+        images = Object.keys(pictures).map(key => 
+            <CatPicture key={key} imgId={key}/>
+        )
     }
 
     return <>
         <main>
             {images}
         </main>
-        <p className="more-cats-msg" onClick={() => fetchNewPictures()}>... загружаем еще котиков ...</p>
+
+        <p 
+            className="more-cats-msg" 
+            onClick={() => fetchNewPictures()}>
+            ... загружаем еще котиков ...
+        </p>
     </>
 }

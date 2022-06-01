@@ -7,10 +7,13 @@ import { setFavPictures, setPictures } from "../store/picturesSlice";
 export const FavPicsPage = () => {
     const dispatch = useDispatch();
     const pictures = useSelector(state => state.pictures.favorite);
-    const favorite = JSON.parse(sessionStorage.getItem('favPictures'));
-    const allPictures = JSON.parse(sessionStorage.getItem('allPictures'));
 
-    console.log(pictures);
+    const favorite = JSON.parse(
+        sessionStorage.getItem('favPictures')
+    );
+    const allPictures = JSON.parse(
+        sessionStorage.getItem('allPictures')
+    );
 
     useEffect(() => {
         if (allPictures) {
@@ -21,9 +24,11 @@ export const FavPicsPage = () => {
         }
 
         const listener = () => {
-            sessionStorage.setItem('scrollPositionFav', window.pageYOffset);
+            sessionStorage.setItem(
+                'scrollPositionFav', window.pageYOffset
+            );
         }
-        window.addEventListener('scroll', listener)
+        window.addEventListener('scroll', listener);
 
         return () => window.removeEventListener('scroll', listener);
     }, []);
@@ -31,7 +36,13 @@ export const FavPicsPage = () => {
     let images;
 
     if (pictures) {
-        images = Object.keys(pictures).reverse().map(key => <CatPicture key={key} imgId={key} extraClass='img-container-fav'/>)
+        images = Object.keys(pictures).reverse().map(key => 
+            <CatPicture 
+                key={key} 
+                imgId={key} 
+                extraClass='img-container-fav'
+            />
+        )
     }
 
     return <>

@@ -1,0 +1,13 @@
+main {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: calc(30px * var(--scale));
+    width: calc(var(--main-width) * var(--scale));
+    margin: 0 auto;
+    padding-top: calc(112px * var(--scale));
+}
+.more-cats-msg {
+    text-align: center;
+    margin-top: calc(48px * var(--scale));
+    cursor: pointer;
+}

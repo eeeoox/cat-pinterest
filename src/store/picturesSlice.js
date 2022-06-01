@@ -8,17 +8,19 @@ const initialState = {
     favorite: {}
 }
 
-export const fetchPictures = createAsyncThunk('pictures/fetchPosts', async (amount) => {
-    const url = `https://api.thecatapi.com/v1/images/search?limit=${amount}`;
-    const response = await fetch(url);
+export const fetchPictures = createAsyncThunk('pictures/fetchPosts', 
+    async (amount) => {
+        const url = `https://api.thecatapi.com/v1/images/search?limit=${amount}`;
+        const response = await fetch(url);
 
-    if (response.ok) {
-        return response.json();
-    } else {
-        const rejected = await response.json();
-        return Promise.reject(rejected.message)
+        if (response.ok) {
+            return response.json();
+        } else {
+            const rejected = await response.json();
+            return Promise.reject(rejected.message)
+        }
     }
-})
+)
 
 const picturesSlice = createSlice({
     name: 'pictures',
@@ -43,6 +45,10 @@ const picturesSlice = createSlice({
     },
 });
 
-export const { setPictures, setFavPictures, favPictureHandler } = picturesSlice.actions;
+export const { 
+    setPictures, 
+    setFavPictures, 
+    favPictureHandler 
+} = picturesSlice.actions;
 
 export default picturesSlice.reducer

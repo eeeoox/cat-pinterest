@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom";
 
 export const Navbar = () => {
     const location = useLocation();
@@ -20,13 +20,26 @@ export const Navbar = () => {
 
     });
 
-    
-
     return (
         <nav>
             <div className="nav-container">
-                <Link to='/' className={location.pathname === '/' ? 'nav-link-selected' : ''}>Все котики</Link>
-                <Link to='/favorites' className={location.pathname === '/favorites' ? 'nav-link-selected' : ''}>Любимые котики</Link>
+                <Link 
+                    to='/' 
+                    className={
+                    location.pathname === '/' 
+                    ? 'nav-link-selected' 
+                    : ''}>
+                    Все котики
+                </Link>
+
+                <Link 
+                    to='/favorites' 
+                    className={
+                    location.pathname === '/favorites' 
+                    ? 'nav-link-selected' 
+                    : ''}>
+                    Любимые котики
+                </Link>
             </div>
         </nav>
     )

@@ -5,7 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import fav from '../images/favorite.png';
 import favBorder from '../images/favorite_border.png';
 import spinner from '../images/spinner-icon.jpg'
-import { setPictures, favPictureHandler } from "../store/picturesSlice";
+import { 
+    setPictures, 
+    favPictureHandler 
+} from "../store/picturesSlice";
 
 export const CatPicture = ({imgId, extraClass}) => {
     const [containerClass, setContainerClass] = useState(false);
@@ -36,7 +39,9 @@ export const CatPicture = ({imgId, extraClass}) => {
         setContainerClass(false);
     };
     const onFavEnter = (e) => e.target.src = fav;
-    const onFavLeave = (e) => e.target.src = extraClass ? fav : favBorder;
+    const onFavLeave = (e) => {
+        e.target.src = extraClass ? fav : favBorder
+    };
 
     const onFavClick = () => {
         const updatedPictures = {
@@ -57,10 +62,14 @@ export const CatPicture = ({imgId, extraClass}) => {
             }));
         } else {
             delete favotites[imgId];
-            sessionStorage.setItem('favPictures', JSON.stringify(favotites));
+            sessionStorage.setItem(
+                'favPictures', JSON.stringify(favotites)
+            );
         }
 
-        sessionStorage.setItem('allPictures', JSON.stringify(updatedPictures));
+        sessionStorage.setItem(
+            'allPictures', JSON.stringify(updatedPictures)
+        );
         dispatch(setPictures(updatedPictures));
         dispatch(favPictureHandler({imgId}))
     }
@@ -80,6 +89,7 @@ export const CatPicture = ({imgId, extraClass}) => {
     const img = React.createElement('img', {
         src: imgUrl, 
         alt: 'img-cat',
+        className: 'img-cat',
         hidden: true,
         onLoad: (e) => {
             e.target.hidden = false;
@@ -96,7 +106,11 @@ export const CatPicture = ({imgId, extraClass}) => {
         {img}
         {!imgLoaded && 
             <div className="img-spinner-container">
-                <img className="img-spinner" src={spinner} alt='spinner'/>
+                <img 
+                    className="img-spinner" 
+                    src={spinner} 
+                    alt='spinner'
+                />
             </div>
         }
 
