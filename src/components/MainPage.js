@@ -7,7 +7,6 @@ import { CatPicture } from "./CatPicture";
 export const MainPage = () => {
     const pictures = useSelector(state => state.pictures.all);
     const prevPictures = JSON.parse(sessionStorage.getItem('allPictures'));
-    const scroll = sessionStorage.getItem('scrollPosition');
     const dispatch = useDispatch();
 
     const fetchNewPictures = async () => {
@@ -47,20 +46,18 @@ export const MainPage = () => {
             dispatch(setPictures( prevPictures ));
         }
 
-        window.addEventListener('beforeunload', () => sessionStorage.setItem('scrollPosition', window.pageYOffset));
-        
-        window.addEventListener('scroll', () => {
+        const listener = () => {
+            sessionStorage.setItem('scrollPositionMain', window.pageYOffset);
+
             const doc = document.documentElement;
             
             if (doc.scrollTop + doc.clientHeight === doc.scrollHeight) {
                 fetchNewPictures()
             }
-        })
-        
-        setTimeout(function () {
-            window.scrollTo({top: scroll, behavior: 'smooth'});
-        }, 1);
-        
+        }
+        window.addEventListener('scroll', listener)
+
+        return () => window.removeEventListener('scroll', listener);
     }, []);
 
     let images;
@@ -73,6 +70,6 @@ export const MainPage = () => {
         <main>
             {images}
         </main>
-        <p onClick={() => fetchNewPictures()}>Больше котиков!</p>
+        <p className="more-cats-msg" onClick={() => fetchNewPictures()}>... загружаем еще котиков ...</p>
     </>
 }

@@ -27,6 +27,9 @@ const picturesSlice = createSlice({
         setPictures(state, action) {
             state.all = action.payload;
         },
+        setFavPictures(state, action) {
+            state.favorite = action.payload;
+        },
         favPictureHandler(state, action) {
             const imgId = action.payload.imgId;
             const picture = state.all[imgId];
@@ -40,6 +43,6 @@ const picturesSlice = createSlice({
     },
 });
 
-export const { setPictures, favPictureHandler } = picturesSlice.actions;
+export const { setPictures, setFavPictures, favPictureHandler } = picturesSlice.actions;
 
 export default picturesSlice.reducer

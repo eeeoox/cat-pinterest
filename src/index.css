@@ -1,25 +1,62 @@
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+* {
+    box-sizing: inherit;
+}
+body {
+    margin: 0;
+}
 nav {
-    background-color: darkgray;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #2196F3;
     position: fixed;
+    z-index: 5;
+}
+.nav-container {
+    width: 1305px;
+    padding-left: 30px;
+    margin: 0px auto;
+    height: 64px;
+}
+.nav-container a {
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 64px;
+    text-decoration: none;
+    padding: 0px 20px;
+}
+.nav-link-selected {
+    background-color: #1E88E5;
+    color: white!important;
 }
 
 main {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
-    padding-top: 100px;
-    width: 100%;
+    padding-left: 30px;
+    width: 1305px;
+    margin: 0 auto;
+    padding-top: 112px;
+}
+.more-cats-msg {
+    text-align: center;
+    margin-top: 48px;
+    cursor: pointer;
 }
 
 img {
-    height: 200px;
-    width: 200px;
+    height: 225px;
+    width: 225px;
     object-fit: cover;
 }
 
 .img-container {
-    height: 200px;
-    width: 200px;
+    height: 225px;
+    width: 225px;
     margin-right: 30px;
     margin-bottom: 30px;
     position: relative;
@@ -27,6 +64,8 @@ img {
 .img-container-selected {
     box-shadow: 0px 0px 10px 2px gray;
 }
+
+
 .img-fav,
 .img-fav-border {
     width: 48px;
@@ -36,3 +75,28 @@ img {
     right: 0;
     cursor: pointer;
 }
+
+.img-spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 200px;
+    margin-right: 30px;
+    margin-bottom: 30px;
+    position: relative;
+}
+.img-spinner {
+    width: 100px;
+    height: 100px;
+    animation: rotation 2s infinite linear;
+}
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+}
+
