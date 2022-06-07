@@ -12,7 +12,7 @@ import { FavPicsPage } from './components/FavPicsPage';
 function App() {
     
     return (
-        <BrowserRouter>
+        <BrowserRouter basename='/cat-pinterest/'>
             <Navbar />
             <Routes>
                 <Route path='/' element={<MainPage />}/>
